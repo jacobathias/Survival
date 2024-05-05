@@ -52,7 +52,7 @@ shape = SubResource("BoxShape3D_3q7ec")
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Player")]
 transform = Transform3D(1, 0, 0, 0, 0.573577, 0.819152, 0, -0.819152, 0.573577, 0, 17.225, 9.52)
 current = true
-fov = 27.2
+fov = 46.9
 size = 17.552
 script = ExtResource("2_575d5")
 Player = NodePath("../Player")

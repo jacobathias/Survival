@@ -11,6 +11,7 @@ func _ready():
 
 
 
+
 func _process(delta):
 	#print(Player.get_child(1))
 	
@@ -31,3 +32,10 @@ func _process(delta):
 	mouse_position = Vector3(intersect_point)
 	#mouse_position = Vector3(intersect_point.x, 1 ,intersect_point.z)
 	Player.get_child(1).look_at(mouse_position)
+
+
+
+	if Input.is_action_just_pressed('mouse_wheel_up'):   fov = clamp(1, 10,40)
+	if Input.is_action_just_pressed('mouse_wheel_down'): fov = clamp(1, 10,40)
+	
+		

@@ -60,7 +60,7 @@ func update_gun_ui():
 	
 func shoot():
 	#if Input.is_action_just_pressed("mouse_click") and Player.is_on_floor():
-	if Input.is_action_just_pressed("mouse_click"):
+	if Input.is_action_pressed("mouse_click"):
 		if not can_shoot(): return
 		if clip <= 0: return
 		clip -= 1

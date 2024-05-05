@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var Weapon = $PlayerMesh/WeaponPosition.get_child(0)
 @onready var WeaponComponent = Weapon.get_node
 #@onready var fireArmComponent: FireArmComponent = $FireArmComponent
+
 func _ready():
 	EnemyMesh = $PlayerMesh
 	
@@ -18,3 +19,7 @@ func _physics_process(delta):
 	look_at(Player.position)
 
 	move_and_slide()
+
+
+func _on_hitbox_component_area_entered(area):
+	print('asdasdasdasd')
