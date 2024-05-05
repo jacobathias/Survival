@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0upxux2ftpft"]
+
+[ext_resource type="PackedScene" uid="uid://d4gh6l0fdfvst" path="res://Assets/Player.tscn" id="1_3j6ph"]
+[ext_resource type="Script" path="res://Scripts/CamLogic.gd" id="2_575d5"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="3_jv3aq"]
+[ext_resource type="PackedScene" uid="uid://cbusotfkoowit" path="res://Assets/Enemy.tscn" id="4_lt1pm"]
+[ext_resource type="PackedScene" uid="uid://coksdd5ko1316" path="res://Assets/Ui.tscn" id="5_kjqxj"]
+[ext_resource type="PackedScene" uid="uid://b6nxyhvmi1fj8" path="res://Assets/box.tscn" id="6_bnfis"]
+
+[sub_resource type="Environment" id="Environment_4efm4"]
+ambient_light_source = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20dbe"]
+albedo_color = Color(0.278431, 0.317647, 0.219608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ho0si"]
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3q7ec"]
+size = Vector3(50, 0.2, 50)
+
+[node name="World" type="Node3D"]
+
+[node name="Ui" parent="." instance=ExtResource("5_kjqxj")]
+layer = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4efm4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.939693, 0.262003, -0.219846, 0, 0.642788, 0.766044, 0.34202, -0.719846, 0.604023, 0, 13.0176, 0)
+light_color = Color(0.792157, 0.701961, 0.52549, 1)
+light_energy = 2.9
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_20dbe")
+mesh = SubResource("BoxMesh_ho0si")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_3q7ec")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Player")]
+transform = Transform3D(1, 0, 0, 0, 0.573577, 0.819152, 0, -0.819152, 0.573577, 0, 17.225, 9.52)
+current = true
+fov = 48.6
+script = ExtResource("2_575d5")
+Player = NodePath("../Player")
+
+[node name="Marker3D" type="Marker3D" parent="Camera3D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("1_3j6ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91306, 1, -1.59204)
+script = ExtResource("3_jv3aq")
+cam = NodePath("../Camera3D")
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("4_lt1pm")]
+transform = Transform3D(-0.353579, -0.00969454, 0.935332, 0, 0.999614, 0.0103672, -0.935389, 0.00366456, -0.353558, 4.9994, 1.09993, -4.99999)
+velocity = Vector3(0.00059557, 0, -1.38283e-05)
+Player = NodePath("../Player")
+
+[node name="StaticBody3D2" parent="." instance=ExtResource("6_bnfis")]
+transform = Transform3D(1.735, 0, 0, 0, 1.735, 0, 0, 0, 1.735, 0, 0.5, -9.32609)
+
+[node name="StaticBody3D3" parent="." instance=ExtResource("6_bnfis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14674, 0.5, -9.32609)
+
+[node name="StaticBody3D4" parent="." instance=ExtResource("6_bnfis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41717, 0.5, -13.7209)
+
+[node name="Label" type="Label3D" parent="."]
+text = "asdasdasd"

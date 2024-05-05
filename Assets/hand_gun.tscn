@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://2e5bdli817yl"]
+
+[ext_resource type="Script" path="res://Scripts/hand_gun.gd" id="1_qum37"]
+[ext_resource type="Script" path="res://Scripts/FireArmComponent.gd" id="2_3dogv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y3yvc"]
+size = Vector3(0.2, 0.2, 1.04)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c25tk"]
+size = Vector3(0.2, 0.66, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_suvsd"]
+size = Vector3(0.1, 0.1, 500)
+
+[node name="HandGun" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_y3yvc")
+script = ExtResource("1_qum37")
+
+[node name="HandGunGrip" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.915964, 0.40126, 0, -0.40126, 0.915964, -0.00032115, -0.314168, 0.441176)
+mesh = SubResource("BoxMesh_c25tk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00695419, -3.8147e-06, -251.158)
+mesh = SubResource("BoxMesh_suvsd")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FireArmComponent" type="Node3D" parent="."]
+script = ExtResource("2_3dogv")
+
+[node name="GripPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.289731, 0.436138)
+
+[node name="TipOfGun" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.542029)

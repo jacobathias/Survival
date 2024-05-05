@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0upxux2ftpft"]
+
+[ext_resource type="PackedScene" uid="uid://d4gh6l0fdfvst" path="res://Assets/Player.tscn" id="1_3j6ph"]
+[ext_resource type="Script" path="res://Scripts/CamLogic.gd" id="2_575d5"]
+[ext_resource type="Script" path="res://Assets/Player.gd" id="3_jv3aq"]
+
+[sub_resource type="Environment" id="Environment_4efm4"]
+ambient_light_source = 3
+ambient_light_color = Color(0.32549, 0.32549, 0.32549, 1)
+ambient_light_energy = 3.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20dbe"]
+albedo_color = Color(0.278431, 0.317647, 0.219608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ho0si"]
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3q7ec"]
+size = Vector3(50, 0.2, 50)
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4efm4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.939693, 0.262003, -0.219846, 0, 0.642788, 0.766044, 0.34202, -0.719846, 0.604023, 0, 13.0176, 0)
+light_energy = 4.071
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_20dbe")
+mesh = SubResource("BoxMesh_ho0si")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_3q7ec")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 11, 8)
+current = true
+script = ExtResource("2_575d5")
+
+[node name="Marker3D" type="Marker3D" parent="Camera3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_3j6ph")]
+script = ExtResource("3_jv3aq")
