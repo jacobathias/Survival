@@ -1,21 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq51m8iqpubur"]
+[gd_scene load_steps=7 format=3 uid="uid://cq51m8iqpubur"]
 
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_3831e"]
-[ext_resource type="PackedScene" uid="uid://dksx233emh2l1" path="res://Projectile.glb" id="2_8v63g"]
+[ext_resource type="Texture2D" uid="uid://bt2fbwp8dixae" path="res://Projectile_Projectile_Base_color.png" id="2_jl3ba"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbfbh"]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("2_jl3ba")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kj371"]
+_surfaces = [{
+"aabb": AABB(-0.250532, -3.46005, -0.244296, 0.501074, 5.96549, 0.375808),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray(3, 0, 5, 0, 1, 0, 3, 0, 6, 0, 5, 0, 2, 0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 2, 0, 3, 0, 1, 0, 1, 0, 4, 0, 0, 0, 1, 0, 5, 0, 4, 0, 0, 0, 6, 0, 3, 0, 0, 0, 4, 0, 6, 0, 6, 0, 4, 0, 5, 0),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 7,
+"vertex_data": PackedByteArray(253, 255, 168, 19, 253, 255, 0, 0, 0, 0, 168, 19, 253, 255, 0, 0, 254, 127, 0, 0, 57, 163, 0, 0, 254, 127, 168, 19, 0, 0, 0, 0, 87, 167, 255, 255, 190, 191, 0, 0, 165, 88, 255, 255, 190, 191, 0, 0, 254, 127, 255, 255, 12, 113, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sh2on"]
+resource_name = "Projectile_Cube"
+_surfaces = [{
+"aabb": AABB(-0.250532, -3.46005, -0.244296, 0.501074, 5.96549, 0.375808),
+"attribute_data": PackedByteArray(179, 58, 57, 236, 179, 58, 57, 236, 194, 20, 238, 197, 194, 20, 238, 197, 216, 46, 155, 220, 216, 46, 155, 220, 216, 46, 155, 220, 216, 46, 155, 220, 3, 0, 251, 255, 3, 0, 251, 255, 3, 0, 251, 255, 195, 34, 196, 208, 195, 34, 196, 208, 195, 34, 196, 208, 195, 34, 196, 208, 85, 195, 161, 72, 85, 195, 161, 72, 172, 183, 219, 60, 176, 191, 212, 67, 176, 191, 212, 67, 176, 191, 212, 67, 249, 187, 48, 64, 249, 187, 48, 64, 249, 187, 48, 64),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray(11, 0, 18, 0, 4, 0, 11, 0, 21, 0, 18, 0, 9, 0, 6, 0, 0, 0, 10, 0, 2, 0, 13, 0, 8, 0, 12, 0, 5, 0, 7, 0, 15, 0, 1, 0, 7, 0, 19, 0, 15, 0, 3, 0, 23, 0, 14, 0, 3, 0, 17, 0, 23, 0, 22, 0, 16, 0, 20, 0),
+"material": SubResource("StandardMaterial3D_wbfbh"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(253, 255, 168, 19, 253, 255, 77, 151, 253, 255, 168, 19, 253, 255, 171, 161, 253, 255, 168, 19, 253, 255, 102, 215, 253, 255, 168, 19, 253, 255, 55, 219, 0, 0, 168, 19, 253, 255, 226, 218, 0, 0, 168, 19, 253, 255, 120, 218, 0, 0, 168, 19, 253, 255, 77, 151, 0, 0, 168, 19, 253, 255, 171, 161, 254, 127, 0, 0, 57, 163, 120, 218, 254, 127, 0, 0, 57, 163, 77, 151, 254, 127, 0, 0, 57, 163, 102, 215, 254, 127, 168, 19, 0, 0, 226, 218, 254, 127, 168, 19, 0, 0, 120, 218, 254, 127, 168, 19, 0, 0, 102, 215, 254, 127, 168, 19, 0, 0, 55, 219, 87, 167, 255, 255, 190, 191, 171, 161, 87, 167, 255, 255, 190, 191, 100, 15, 87, 167, 255, 255, 190, 191, 55, 219, 165, 88, 255, 255, 190, 191, 226, 218, 165, 88, 255, 255, 190, 191, 171, 161, 165, 88, 255, 255, 190, 191, 100, 15, 254, 127, 255, 255, 12, 113, 226, 218, 254, 127, 255, 255, 12, 113, 100, 15, 254, 127, 255, 255, 12, 113, 55, 219, 210, 10, 53, 213, 238, 254, 109, 2, 59, 109, 73, 27, 142, 79, 255, 30, 15, 177, 124, 223, 131, 156, 35, 249, 210, 10, 53, 213, 238, 254, 109, 2, 131, 156, 35, 249, 210, 10, 53, 213, 59, 109, 73, 27, 15, 177, 124, 223, 131, 156, 35, 249, 59, 109, 73, 27, 142, 79, 255, 30, 238, 254, 109, 2, 125, 143, 64, 184, 142, 79, 255, 30, 15, 177, 124, 223, 238, 254, 109, 2, 125, 143, 64, 184, 15, 177, 124, 223, 125, 143, 64, 184, 142, 79, 255, 30)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kj371")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_krcpf"]
 margin = 0.1
 size = Vector3(0.07, 0.07, 1.69277)
 
 [node name="Projectile" type="RigidBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -2.3333)
 script = ExtResource("1_3831e")
 
-[node name="Projectile" parent="." instance=ExtResource("2_8v63g")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0.343237)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_energy = 0.1
-omni_range = 2.357
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0, -0.3, 0, 0.3, 0, 0, 0, 0.343237)
+mesh = SubResource("ArrayMesh_sh2on")
+skeleton = NodePath("")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
@@ -23,8 +60,10 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08, 1, 0, -3.27788e-08, 0.480072)
+[node name="ProjectileArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08, 1, 0, -3.27788e-08, 0.208697)
 shape = SubResource("BoxShape3D_krcpf")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

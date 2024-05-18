@@ -3,6 +3,8 @@ var Marker: Marker3D
 var intersection
 var intersect_point
 @export var Player : CharacterBody3D
+@export var min = 40
+@export var max = 70
 var mouse_position: Vector3 = Vector3.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,13 +31,15 @@ func _process(delta):
 	if not intersection.is_empty():
 		intersect_point = intersection["position"]
 	else : return
-	mouse_position = Vector3(intersect_point)
+	mouse_position = Vector3(intersect_point.x, 0.5 ,intersect_point.z)
 	#mouse_position = Vector3(intersect_point.x, 1 ,intersect_point.z)
 	Player.get_child(1).look_at(mouse_position)
 
 
 
-	if Input.is_action_just_pressed('mouse_wheel_up'):   fov = clamp(1, 10,40)
-	if Input.is_action_just_pressed('mouse_wheel_down'): fov = clamp(1, 10,40)
+	if Input.is_action_just_pressed('mouse_wheel_up') and fov > min: fov += -4
+	if Input.is_action_just_pressed('mouse_wheel_down')and fov < max: fov += 4
+	if fov >= max: fov = max
+	if fov <= min: fov = min
 	
 		

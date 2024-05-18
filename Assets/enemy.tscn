@@ -27,6 +27,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_v6yss")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape3D_8cmhr")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
@@ -48,15 +49,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.658892, 0, 0)
 [node name="HandGun" parent="PlayerMesh/WeaponPosition" instance=ExtResource("4_w5nb4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.230446)
 
-[node name="HitboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_w40h2")
+max_health = 10
+
+[node name="HitboxComponent" type="Area3D" parent="."]
 script = ExtResource("3_q53oh")
-health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape3D_jnloq")
-
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("2_w40h2")
 
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
 [connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]

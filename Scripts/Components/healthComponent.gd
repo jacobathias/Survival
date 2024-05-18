@@ -24,7 +24,7 @@ var isAlive:             bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(HealthBar)
+	#print(HealthBar)
 	health = max_health
 	update_ui()
 	
@@ -52,5 +52,8 @@ func update_ui():
 	HealthBar.value = health
 	HealthBar.max_value = max_health
 	pass
-		
+
+func die():
+	print(health)
+	if health <=0: get_parent().queue_free()
 		

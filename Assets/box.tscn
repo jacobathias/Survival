@@ -1,17 +1,76 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6nxyhvmi1fj8"]
+[gd_scene load_steps=11 format=3 uid="uid://b6nxyhvmi1fj8"]
+
+[ext_resource type="Texture2D" uid="uid://bfgq7u13xn3wj" path="res://Assets/Crate_crate_color.png" id="1_w5vx3"]
+[ext_resource type="Texture2D" uid="uid://l5w2n88uekl3" path="res://Assets/Crate_crate_roug.png" id="2_pmr16"]
+[ext_resource type="Texture2D" uid="uid://xiqto5qv3yk3" path="res://Assets/Crate_crate_normal.png" id="3_c70f6"]
+[ext_resource type="PackedScene" uid="uid://ralvuvp1ru0h" path="res://Scenes/hitbox_component.tscn" id="4_vcev1"]
+[ext_resource type="PackedScene" uid="uid://esn5w2hgs48s" path="res://Scenes/health_component.tscn" id="5_wwy42"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4t1re"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_jiesr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gijrq"]
+resource_name = "Baked Crate"
+cull_mode = 2
+albedo_texture = ExtResource("1_w5vx3")
+metallic_texture = ExtResource("2_pmr16")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_pmr16")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_c70f6")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_e57mr"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 6, 0, 4, 0, 0, 0, 2, 0, 6, 0, 3, 0, 6, 0, 2, 0, 3, 0, 7, 0, 6, 0, 7, 0, 4, 0, 6, 0, 7, 0, 5, 0, 4, 0, 5, 0, 3, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0, 5, 0, 0, 0, 4, 0, 5, 0, 1, 0, 0, 0),
+"name": "Baked Crate",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(254, 255, 254, 255, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 254, 255, 254, 255, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_x3sq4"]
+resource_name = "Crate_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"attribute_data": PackedByteArray(255, 255, 255, 255, 255, 159, 0, 0, 0, 0, 255, 255, 255, 95, 255, 63, 255, 255, 255, 255, 255, 159, 255, 63, 255, 255, 0, 0, 255, 95, 0, 0, 255, 255, 0, 0, 255, 159, 255, 63, 0, 0, 255, 255, 255, 95, 255, 63, 255, 255, 255, 255, 255, 159, 255, 63, 0, 0, 0, 0, 255, 95, 0, 0, 255, 255, 0, 0, 255, 159, 0, 0, 0, 0, 255, 255, 255, 95, 255, 63, 0, 0, 0, 0, 255, 159, 0, 0, 0, 0, 0, 0, 255, 95, 0, 0, 0, 0, 255, 255, 255, 159, 255, 63, 255, 255, 255, 255, 255, 159, 255, 63, 255, 255, 255, 255, 255, 159, 0, 0, 0, 0, 0, 0, 255, 95, 255, 63, 255, 255, 255, 255, 255, 95, 255, 63, 255, 255, 0, 0, 255, 95, 0, 0, 255, 255, 0, 0, 255, 159, 0, 0, 255, 255, 0, 0, 255, 159, 0, 0, 0, 0, 255, 255, 255, 159, 255, 63, 0, 0, 0, 0, 255, 95, 0, 0, 0, 0, 255, 255, 255, 95, 0, 0, 0, 0, 0, 0, 255, 95, 255, 63),
+"format": 34896613431,
+"index_count": 36,
+"index_data": PackedByteArray(1, 0, 19, 0, 13, 0, 1, 0, 7, 0, 19, 0, 9, 0, 18, 0, 6, 0, 9, 0, 21, 0, 18, 0, 23, 0, 14, 0, 20, 0, 23, 0, 17, 0, 14, 0, 16, 0, 10, 0, 4, 0, 16, 0, 22, 0, 10, 0, 5, 0, 8, 0, 2, 0, 5, 0, 11, 0, 8, 0, 15, 0, 0, 0, 12, 0, 15, 0, 3, 0, 0, 0),
+"material": SubResource("StandardMaterial3D_gijrq"),
+"name": "Baked Crate",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(254, 255, 254, 255, 0, 0, 255, 255, 254, 255, 254, 255, 0, 0, 255, 255, 254, 255, 254, 255, 0, 0, 84, 213, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 84, 213, 254, 255, 0, 0, 0, 0, 84, 213, 254, 255, 254, 255, 255, 255, 255, 191, 254, 255, 254, 255, 255, 255, 255, 255, 254, 255, 254, 255, 255, 255, 84, 213, 254, 255, 0, 0, 255, 255, 255, 191, 254, 255, 0, 0, 255, 255, 84, 213, 254, 255, 0, 0, 255, 255, 84, 213, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 254, 255, 255, 255, 255, 191, 0, 0, 254, 255, 255, 255, 255, 255, 0, 0, 254, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 255, 255, 84, 213, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 127, 255, 127, 255, 191, 170, 42, 170, 42, 255, 255, 255, 127, 84, 85, 84, 85, 170, 42, 170, 42, 255, 255, 255, 255, 255, 127, 255, 191, 170, 42, 170, 42, 255, 255, 255, 255, 84, 85, 84, 85, 170, 42, 170, 42, 255, 255, 255, 127, 255, 127, 255, 191, 255, 63, 255, 127, 255, 255, 255, 127, 84, 85, 84, 85, 255, 63, 255, 127, 255, 255, 255, 255, 255, 127, 255, 191, 255, 63, 255, 127, 255, 255, 255, 255, 84, 85, 84, 85, 255, 63, 255, 127)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_e57mr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nua8"]
+size = Vector3(2, 2, 2)
 
 [node name="Box" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 physics_material_override = SubResource("PhysicsMaterial_4t1re")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_jiesr")
+[node name="Cube_002" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("ArrayMesh_x3sq4")
+skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="HitboxComponent" parent="." instance=ExtResource("4_vcev1")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.496581, 0)
 shape = SubResource("BoxShape3D_5nua8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.496581, 0)
+shape = SubResource("BoxShape3D_5nua8")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_wwy42")]

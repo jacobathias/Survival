@@ -60,7 +60,8 @@ func update_gun_ui():
 	
 func shoot():
 	#if Input.is_action_just_pressed("mouse_click") and Player.is_on_floor():
-	if Input.is_action_pressed("mouse_click"):
+	#if Input.is_action_pressed("mouse_click"):
+	if Input.is_action_just_pressed("mouse_click"):
 		if not can_shoot(): return
 		if clip <= 0: return
 		clip -= 1
@@ -68,8 +69,9 @@ func shoot():
 		var projectile :RigidBody3D = Projectile.instantiate()
 		projectile.set_position(TipOfGun.global_position)
 		projectile.set_rotation(TipOfGun.global_rotation)
-		projectile.apply_force(-TipOfGun.global_transform.basis.z * 15000,)
+		projectile.apply_force(-TipOfGun.global_transform.basis.z * 10000,)
 		World.add_child(projectile)
+		projectile.set_damage(fire_power)
 		update_gun_ui()
 
 func can_shoot() -> bool:

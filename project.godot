@@ -73,8 +73,3 @@ mouse_wheel_down={
 [physics]
 
 common/max_physics_steps_per_frame=20
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

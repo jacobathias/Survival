@@ -23,6 +23,7 @@ size = Vector3(0.265, 0.715, 0.82)
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_h43ht")
+is_player = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8cmhr")
@@ -47,10 +48,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.695427, 0.269466, -0.697912
 transform = Transform3D(0.45574, 0, 0, 0, 0.393565, 0, 0, 0, 0.403202, 0, 0, 0.232664)
 skeleton = NodePath("")
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_t34a0")]
-health_component = NodePath("../HealthComponent")
+[node name="HealthComponent" parent="." instance=ExtResource("3_s6mw1")]
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_t34a0")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape3D_japgy")
-
-[node name="HealthComponent" parent="." instance=ExtResource("3_s6mw1")]
