@@ -70,6 +70,17 @@ mouse_wheel_down={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+3d_physics/layer_1="player"
+2d_physics/layer_2="enemies"
+3d_physics/layer_2="enemie"
+2d_physics/layer_3="objects"
+3d_physics/layer_3="props"
+3d_physics/layer_4="ground"
+3d_physics/layer_5="projectiles"
+
 [physics]
 
 common/max_physics_steps_per_frame=20

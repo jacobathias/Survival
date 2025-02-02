@@ -7,8 +7,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8cmhr"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_japgy"]
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8d0cg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldk84"]
@@ -20,21 +18,16 @@ size = Vector3(0.265, 0.13, 0.82)
 [sub_resource type="BoxMesh" id="BoxMesh_wfdv3"]
 size = Vector3(0.265, 0.715, 0.82)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_japgy"]
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_mask = 12
+collision_mask = 3
 script = ExtResource("1_h43ht")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape3D_8cmhr")
-
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_t34a0")]
-collision_layer = 8
-collision_mask = 8
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
-shape = SubResource("CapsuleShape3D_japgy")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_8d0cg")
@@ -55,5 +48,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.695427, 0.269466, -0.697912
 [node name="HandGun" parent="PlayerMesh/WeaponPosition" instance=ExtResource("1_vivx2")]
 transform = Transform3D(0.45574, 0, 0, 0, 0.393565, 0, 0, 0, 0.403202, 0, 0, 0.232664)
 skeleton = NodePath("")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_t34a0")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape3D_japgy")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_s6mw1")]

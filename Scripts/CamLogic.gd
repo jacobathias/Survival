@@ -1,41 +1,50 @@
 extends Camera3D
-var Marker: Marker3D
-var intersection
-var intersect_point
-@export var Player : CharacterBody3D
+
+@onready var Player: CharacterBody3D = $"../Player"
+@onready var Marker: Marker3D = $Marker3D
+
+var tween: Tween  # Stores the active tween
+var intersection: Dictionary
 var mouse_position: Vector3 = Vector3.ZERO
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	Player = $"../Player"
-	Marker=$Marker3D
 
-
-
+const MAX_FOV: float = 70.0
+const MIN_FOV: float = 40.0
+const FOV_SPEED: int = 10
 
 func _process(delta):
-	#print(Player.get_child(1))
-	
-	position = Vector3(Player.get_child(1).global_position.x,17, Player.get_child(1).global_position.z +10  )
-	#if Input.is_action_just_pressed("mouse_click"):
+	# Update camera position relative to the player
+	var player_pos = Player.get_child(1).global_position
+	position = Vector3(player_pos.x, 17, player_pos.z + 10)
+
+	# Raycasting for mouse position detection
 	var space_state = get_world_3d().direct_space_state
-	var mous_position = get_viewport().get_mouse_position()
-	var ray_origin = project_ray_origin(mous_position)
-	var ray_end = ray_origin + project_ray_normal(mous_position) * 1000
+	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_origin = project_ray_origin(mouse_pos)
+	var ray_end = ray_origin + project_ray_normal(mouse_pos) * 1000
 
 	var params = PhysicsRayQueryParameters3D.new()
 	params.from = ray_origin
 	params.to = ray_end
-	intersection = space_state.intersect_ray(params) # Change 1000 to your desired ray length
-	if not intersection.is_empty():
-		intersect_point = intersection["position"]
-	else : return
-	mouse_position = Vector3(intersect_point)
-	#mouse_position = Vector3(intersect_point.x, 1 ,intersect_point.z)
-	Player.get_child(1).look_at(mouse_position)
-
-
-
-	if Input.is_action_just_pressed('mouse_wheel_up'):   fov = clamp(1, 10,40)
-	if Input.is_action_just_pressed('mouse_wheel_down'): fov = clamp(1, 10,40)
 	
-		
+	intersection = space_state.intersect_ray(params)
+	if intersection:
+		mouse_position = intersection["position"]
+
+	# Handle zoom with mouse wheel
+	if Input.is_action_just_pressed("mouse_wheel_up"):
+		start_fov_tween(adjust_fov(1))
+
+	if Input.is_action_just_pressed("mouse_wheel_down"):
+		start_fov_tween(adjust_fov(-1))
+
+func start_fov_tween(target_fov: float):
+	# Kill existing tween if it's active
+	if tween and tween.is_running():
+		tween.kill()
+	
+	# Create a new tween and animate FOV
+	tween = get_tree().create_tween()
+	tween.tween_property(self, "fov", target_fov, 0.1)
+
+func adjust_fov(factor: int) -> float:
+	return clamp(fov - FOV_SPEED * factor, MIN_FOV, MAX_FOV)

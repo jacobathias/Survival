@@ -30,7 +30,7 @@ size = Vector3(50, 0.2, 50)
 [node name="World" type="Node3D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("1_3j6ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, 2.3752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, -6)
 cam = NodePath("../Camera")
 
 [node name="Ui" parent="." instance=ExtResource("5_kjqxj")]
@@ -46,8 +46,6 @@ light_energy = 2.9
 shadow_enabled = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-collision_layer = 8
-collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 material_override = SubResource("StandardMaterial3D_20dbe")
@@ -57,12 +55,13 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_3q7ec")
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Player")]
 transform = Transform3D(1, 0, 0, 0, 0.573577, 0.819152, 0, -0.819152, 0.573577, 0, 17.225, 9.52)
 current = true
-fov = 37.8493
+fov = 40.0
 size = 17.552
 script = ExtResource("2_575d5")
+Player = NodePath("../Player")
 
 [node name="StaticBody3D2" parent="." instance=ExtResource("6_bnfis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.749259, 1.68295, -9.3116)
@@ -75,13 +74,11 @@ billboard = 1
 text = "asdasdasd"
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("4_lt1pm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.92062, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -6)
 Player = NodePath("../Player")
 
 [node name="ColTestCube" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46734, 4.61804, 0)
-collision_layer = 4
-collision_mask = 31
 physics_material_override = SubResource("PhysicsMaterial_afc06")
 
 [node name="ColTestCubeMesh" type="MeshInstance3D" parent="ColTestCube"]
@@ -93,8 +90,6 @@ shape = SubResource("SphereShape3D_f124x")
 
 [node name="ColTestCube2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43789, 3.74115, -6.49615)
-collision_layer = 4
-collision_mask = 31
 physics_material_override = SubResource("PhysicsMaterial_afc06")
 
 [node name="ColTestCubeMesh" type="MeshInstance3D" parent="ColTestCube2"]

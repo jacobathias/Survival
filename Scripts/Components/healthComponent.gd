@@ -33,9 +33,11 @@ func _ready():
 func _process(delta):
 	pass
 
-func damage(damage: int):
-	if not isAlive: return
-	health =- damage - defense
+func damage(dmg: int):
+	if not isAlive: 
+		print("Dead")
+		return
+	health =- dmg - defense
 	check_if_is_alive()
 	update_ui()
 
