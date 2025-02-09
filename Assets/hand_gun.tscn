@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://2e5bdli817yl"]
 
-[ext_resource type="Script" path="res://Scripts/hand_gun.gd" id="1_qum37"]
+[ext_resource type="Script" path="res://Scripts/Hand_gun.gd" id="1_edcjj"]
 [ext_resource type="Script" path="res://Scripts/FireArmComponent.gd" id="2_3dogv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_y3yvc"]
@@ -14,7 +14,7 @@ size = Vector3(0.1, 0.1, 500)
 
 [node name="HandGun" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_y3yvc")
-script = ExtResource("1_qum37")
+script = ExtResource("1_edcjj")
 
 [node name="HandGunGrip" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.915964, 0.40126, 0, -0.40126, 0.915964, -0.00032115, -0.314168, 0.441176)

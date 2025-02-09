@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://d4gh6l0fdfvst"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_h43ht"]
-[ext_resource type="PackedScene" uid="uid://2e5bdli817yl" path="res://Assets/hand_gun.tscn" id="1_vivx2"]
-[ext_resource type="PackedScene" uid="uid://esn5w2hgs48s" path="res://Scenes/health_component.tscn" id="3_s6mw1"]
-[ext_resource type="PackedScene" uid="uid://ralvuvp1ru0h" path="res://Scenes/hitbox_component.tscn" id="4_t34a0"]
+[ext_resource type="PackedScene" uid="uid://2e5bdli817yl" path="res://Assets/Hand_gun.tscn" id="1_vivx2"]
+[ext_resource type="PackedScene" uid="uid://esn5w2hgs48s" path="res://Scenes/Health_component.tscn" id="3_s6mw1"]
+[ext_resource type="PackedScene" uid="uid://ralvuvp1ru0h" path="res://Scenes/Hitbox_component.tscn" id="4_t34a0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8cmhr"]
 
@@ -25,6 +25,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 12
 script = ExtResource("1_h43ht")
 
+[node name="HealthComponent" parent="." instance=ExtResource("3_s6mw1")]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8cmhr")
 
@@ -36,24 +38,22 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape3D_japgy")
 
-[node name="PlayerMesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_8d0cg")
 skeleton = NodePath("../..")
 
-[node name="Visor" type="MeshInstance3D" parent="PlayerMesh"]
+[node name="Visor" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0346686, 0.454897, -0.422584)
 material_override = SubResource("StandardMaterial3D_ldk84")
 mesh = SubResource("BoxMesh_7ppiv")
 
-[node name="Backpack" type="MeshInstance3D" parent="PlayerMesh"]
+[node name="Backpack" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.000308573, 0.13966, 0.581502)
 mesh = SubResource("BoxMesh_wfdv3")
 
-[node name="WeaponPosition" type="Marker3D" parent="PlayerMesh"]
+[node name="WeaponPosition" type="Marker3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.695427, 0.269466, -0.697912)
 
-[node name="HandGun" parent="PlayerMesh/WeaponPosition" instance=ExtResource("1_vivx2")]
+[node name="HandGun" parent="Mesh/WeaponPosition" instance=ExtResource("1_vivx2")]
 transform = Transform3D(0.45574, 0, 0, 0, 0.393565, 0, 0, 0, 0.403202, 0, 0, 0.232664)
 skeleton = NodePath("")
-
-[node name="HealthComponent" parent="." instance=ExtResource("3_s6mw1")]

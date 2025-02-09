@@ -1,8 +1,7 @@
-extends CharacterBody3D
+extends Player
 
 # Constants
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+
 const PROJECTILE_PATH = "res://Assets/Projectile.tscn"
 
 # Exported Variables
@@ -10,13 +9,12 @@ const PROJECTILE_PATH = "res://Assets/Projectile.tscn"
 
 # Variables
 var EnemyMesh: MeshInstance3D
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 
 # Node References
-@onready var Weapon = $EnemyMesh/WeaponPosition.get_child(0)
-@onready var WeaponComponent = Weapon.get_node
-@onready var Hitbox = $HitboxComponent
-#@onready var fireArmComponent: FireArmComponent = $FireArmComponent
+
+@onready var Hitbox = $HitboxComponent #??????????????????
+
 
 # Initialization
 func _ready():
@@ -29,10 +27,6 @@ func _physics_process(delta):
 	# look_at(Player.position)
 	if not is_on_floor(): velocity.y -= gravity * delta
 	move_and_slide()
-	
-
-
-
 
 # Event Handlers
 func _on_hitbox_component_area_entered(area):

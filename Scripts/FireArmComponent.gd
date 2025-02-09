@@ -14,10 +14,10 @@ var Projectile = preload("res://Assets/projectile.tscn")
 @export var swap_speed: float = 7.0
 @export var rate_of_fire: float = 7.0
 @export var weight: float = 1.0
-
 @onready var TipOfGun: Node3D = $"../TipOfGun"
 @onready var World: Node = get_tree().get_root().get_child(0)
 @onready var Player: CharacterBody3D = $"../../../.."
+var projectile_speed: float = 200 
 
 # UI Elements
 @onready var Ui = World.get_node('Ui')
@@ -52,7 +52,7 @@ func shoot():
 	clip -= 1
 	var projectile: RigidBody3D = Projectile.instantiate()
 	projectile.global_transform = TipOfGun.global_transform
-	projectile.apply_impulse(-TipOfGun.global_transform.basis.z * 10)
+	projectile.apply_impulse(-TipOfGun.global_transform.basis.z * projectile_speed)
 
 	World.add_child(projectile)
 	update_gun_ui()

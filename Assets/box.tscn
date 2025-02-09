@@ -8,6 +8,8 @@
 
 [node name="Box" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 4
+collision_mask = 31
 physics_material_override = SubResource("PhysicsMaterial_4t1re")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

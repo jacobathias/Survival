@@ -1,3 +1,4 @@
+@icon ("res://Node Icons/Hitbox.png")
 extends Area3D
 class_name HitboxComponent 
 
