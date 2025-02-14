@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6nxyhvmi1fj8"]
+[gd_scene load_steps=7 format=3 uid="uid://b6nxyhvmi1fj8"]
+
+[ext_resource type="Script" path="res://Scripts/Components/HitboxComponent.gd" id="1_hsgrn"]
+[ext_resource type="PackedScene" uid="uid://esn5w2hgs48s" path="res://Scenes/health_component.tscn" id="1_jghib"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4t1re"]
 
@@ -6,9 +9,11 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nua8"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5jt1"]
+
 [node name="Box" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-collision_layer = 4
+collision_layer = 31
 collision_mask = 31
 physics_material_override = SubResource("PhysicsMaterial_4t1re")
 
@@ -17,3 +22,15 @@ mesh = SubResource("BoxMesh_jiesr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_5nua8")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_jghib")]
+
+[node name="HitboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 31
+collision_mask = 31
+script = ExtResource("1_hsgrn")
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape3D" parent="HitboxComponent"]
+transform = Transform3D(1.18, 0, 0, 0, 1.18, 0, 0, 0, 1.18, 0, 0, 0)
+shape = SubResource("BoxShape3D_s5jt1")

@@ -16,7 +16,7 @@ var Projectile = preload("res://Assets/projectile.tscn")
 @export var weight: float = 1.0
 @onready var TipOfGun: Node3D = $"../TipOfGun"
 @onready var World: Node = get_tree().get_root().get_child(0)
-@onready var Player: CharacterBody3D = $"../../../.."
+#@onready var Player: CharacterBody3D = $".."
 var projectile_speed: float = 200 
 
 # UI Elements

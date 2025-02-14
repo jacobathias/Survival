@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://cbusotfkoowit"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_v6yss"]
-[ext_resource type="Script" path="res://Scripts/Components/HealthComponent.gd" id="2_w40h2"]
+[ext_resource type="PackedScene" uid="uid://esn5w2hgs48s" path="res://Scenes/health_component.tscn" id="2_uto3r"]
 [ext_resource type="Script" path="res://Scripts/Components/HitboxComponent.gd" id="3_q53oh"]
-[ext_resource type="PackedScene" uid="uid://2e5bdli817yl" path="res://Assets/Hand_gun.tscn" id="4_w5nb4"]
+[ext_resource type="PackedScene" uid="uid://2e5bdli817yl" path="res://Assets/hand_gun.tscn" id="4_w5nb4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jnloq"]
 radius = 1.025
@@ -28,15 +28,13 @@ collision_layer = 2
 collision_mask = 30
 script = ExtResource("1_v6yss")
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("2_w40h2")
-max_health = 10
+[node name="HealthComponent2" parent="." instance=ExtResource("2_uto3r")]
 
 [node name="HitboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 18
 collision_mask = 16
 script = ExtResource("3_q53oh")
-health_component = NodePath("../HealthComponent")
+health_component = NodePath("../HealthComponent2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape3D_jnloq")

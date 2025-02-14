@@ -11,15 +11,21 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var healthComponent: HealthComponent = $HealthComponent
 @onready var hitboxComponent: HitboxComponent = $HitboxComponent
 @onready var PlayerMesh: MeshInstance3D = $Mesh
-@onready var WeaponPosition: Marker3D = $Mesh/WeaponPosition
-@onready var Weapon: MeshInstance3D = $Mesh/WeaponPosition.get_child(0)
-@onready var WeaponComponent = Weapon.get_node
+@onready var PlayerPosition: Marker3D = $PlayerPosition
+@onready var WeaponPosition: Marker3D
+@onready var Weapon: MeshInstance3D
 
+func _ready() -> void:
+	#WeaponPosition= $WeaponPosition
+	#Weapon = $WeaponPosition.get_child(0)
+	WeaponPosition= $PlayerPosition/WeaponPosition
+	Weapon = $PlayerPosition/WeaponPosition.get_child(0)
+	
 
 func _physics_process(delta):
 	Weapon.can_shoot()
-	handle_movement(delta)
 	point_gun()
+	handle_movement(delta)
 	reload()
 
 func reload():
@@ -28,11 +34,38 @@ func reload():
 		Weapon.reload()
 	
 func point_gun():
-	Weapon.visible = false
-	var target = $Mesh/WeaponPosition
-	target.look_at(cam.mouse_position)
-	mouse_label.set_position(cam.mouse_position)
-	mouse_label.text = str(cam.mouse_position)
+	if Input.is_action_pressed("mouse_right_click"):
+		Weapon.visible = true
+		
+		# Converte a posição do mouse para um ponto no mundo
+		var space_state = get_world_3d().direct_space_state
+		var from = cam.project_ray_origin(get_viewport().get_mouse_position())
+		var to = from + cam.project_ray_normal(get_viewport().get_mouse_position()) * 1000
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		var result = space_state.intersect_ray(query)
+		
+		if result:
+			var target_position = result.position
+			var offset = Vector3(0.7, 0, 0)  # Offset to the right
+
+	# Rotate the offset around the Y-axis using WeaponPosition's rotation
+			var rotated_offset = offset.rotated(Vector3.UP, WeaponPosition.rotation.y)
+
+	# Make the weapon look at the target position
+			WeaponPosition.look_at(target_position, Vector3.UP)
+
+	# Align the player's rotation with the weapon's rotation
+			PlayerMesh.rotation.y = WeaponPosition.rotation.y
+
+	# Apply the rotated offset to position the weapon correctly
+			WeaponPosition.position = PlayerMesh.position + rotated_offset
+
+		
+	else:
+		Weapon.visible = false
+
+
+
 
 func handle_movement(delta):
 	if not is_on_floor(): # Makes character fall if in the air

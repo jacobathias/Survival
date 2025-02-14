@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://esn5w2hgs48s"]
+[gd_scene load_steps=5 format=3 uid="uid://esn5w2hgs48s"]
 
 [ext_resource type="Script" path="res://Scripts/Components/HealthComponent.gd" id="1_yfyfi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ogva"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo2ke"]
+bg_color = Color(4.3799e-06, 0.722804, 0.274959, 1)
+
+[sub_resource type="Theme" id="Theme_e716y"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_0ogva")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_vo2ke")
+
 [node name="HealthComponent" type="Node3D"]
 script = ExtResource("1_yfyfi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_right = 284.0
+offset_bottom = 26.667
+rotation = -0.471239
+scale = Vector2(0.3, 0.3)
+theme = SubResource("Theme_e716y")
+show_percentage = false

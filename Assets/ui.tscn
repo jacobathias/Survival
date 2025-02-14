@@ -9,7 +9,7 @@ font_size = 18
 [node name="Ui" type="CanvasLayer"]
 layer = 2
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="PlayerHealthBar" type="ProgressBar" parent="."]
 offset_left = 96.0
 offset_top = 37.0
 offset_right = 375.0
